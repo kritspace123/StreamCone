@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Buttons</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <button class="custom-btn btn-11 +score_first">+<div class="dot"></div></button>
+  <div class="score_first">0</div>
+  <button class="custom-btn btn-11 -score_first">-<div class="dot"></div></button>
+
+  <button class="custom-btn btn-11 +score_second">+<div class="dot"></div></button>
+  <div class="score_first">0</div>
+  <button class="custom-btn btn-11 -score_second">-<div class="dot"></div></button>
+
+  <button class="custom-btn btn-11 +score_first">START<div class="dot"></div></button>
+  <button class="custom-btn btn-11 +score_first">Update Team<div class="dot"></div></button>
+  <button class="custom-btn btn-11 +score_first">Reset Timer<div class="dot"></div></button>
+  <button class="custom-btn btn-11 +score_first">Reset Score<div class="dot"></div></button>
+  <button class="custom-btn btn-11 +score_first">SWAP<div class="dot"></div></button>
+
+  <input type="text">
+  <input type="text">
+
+  <form action="/save" method="post">
+        <textarea name="textToSave" rows="4" cols="50"></textarea>
+        <br>
+        <button type="submit">Сохранить в файл</button>
+  </form>
+</div>
+
+</body>
+</html>

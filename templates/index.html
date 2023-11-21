@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ввод текста и счетчики</title>
+    <style>
+        /* Запрещаем изменение размера textarea с помощью мыши */
+        textarea {
+            resize: none;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Изменяем шрифт кнопки на Montserrat */
+        input[type="submit"] {
+            font-family: 'Montserrat', sans-serif;  /* Используем Montserrat с fallback на sans-serif */
+            font-size: 17px;  /* Измените размер шрифта, если нужно */
+            font-weight: 600;
+        }
+
+        /* Стиль для счетчика */
+        .counter {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        /* Стиль для кнопок увеличения/уменьшения/обнуления счетчика */
+        .counter-button {
+            font-size: 15px;
+            margin-left: 10px;
+        }
+    </style>
+    <script>
+        function showAndHideMessage() {
+            var messageElement = document.getElementById("message");
+            messageElement.style.display = "block";  // Показываем элемент
+
+            setTimeout(function () {
+                messageElement.style.display = "none";  // Скрываем элемент через 5 секунд
+            }, 5000);
+        }
+
+        function incrementCounter() {
+            fetch('/increment')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('counter1').textContent = data.counter_value1;
+                });
+        }
+
+        function decrementCounter() {
+            fetch('/decrement')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('counter1').textContent = data.counter_value1;
+                });
+        }
+
+        function resetCounter() {
+            fetch('/reset')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('counter1').textContent = data.counter_value1;
+                });
+        }
+
+        function incrementCounter2() {
+            fetch('/increment2')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('counter2').textContent = data.counter_value2;
+                });
+        }
+
+        function decrementCounter2() {
+            fetch('/decrement2')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('counter2').textContent = data.counter_value2;
+                });
+        }
+
+        function resetCounter2() {
+            fetch('/reset2')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('counter2').textContent = data.counter_value2;
+                });
+        }
+    </script>
+</head>
+<body>
+    <div>Hello</div>
+    <form method="post" action="/" onsubmit="showAndHideMessage()">
+        <label for="text1"></label>
+        <textarea name="text1" id="text1" rows="1" cols="18">{{ entered_text1 }}</textarea>
+        <br>
+        <label for="text2"></label>
+        <textarea name="text2" id="text2" rows="1" cols="18">{{ entered_text2 }}</textarea>
+        <br>
+        <input type="submit" value="Update Team">
+    </form>
+
+    <h1>Счетчик 1: <span id="counter1">{{ counter_value1 }}</span></h1>
+    <button class="counter-button" onclick="incrementCounter()">Увеличить</button>
+    <button class="counter-button" onclick="decrementCounter()">Уменьшить</button>
+    <button class="counter-button" onclick="resetCounter()">Обнулить</button>
+
+    <h1>Счетчик 2: <span id="counter2">{{ counter_value2 }}</span></h1>
+    <button class="counter-button" onclick="incrementCounter2()">Увеличить</button>
+    <button class="counter-button" onclick="decrementCounter2()">Уменьшить</button>
+    <button class="counter-button" onclick="resetCounter2()">Обнулить</button>
+
+    <p id="message" style="display: none;">accept</p>
+</body>
+</html>
